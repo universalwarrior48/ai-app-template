@@ -10,12 +10,12 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  Test:
     runs-on: ubuntu-latest
     # Run tests on template repository to validate template integrity
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: ['3.10', '3.12']
     
     steps:
     - name: Checkout code
@@ -32,6 +32,11 @@ jobs:
         pip install -r requirements.txt
         pip install pytest pytest-cov pytest-asyncio httpx
         
+    - name: Install package in development mode
+      run: |
+        echo "📦 Installing package in development mode..."
+        python -m pip install -e .
+        
     - name: Run tests with pytest
       run: |
         echo "🧪 Running tests with Python ${{ matrix.python-version }}"
@@ -42,17 +47,8 @@ jobs:
         echo "📊 Running tests with coverage report"
         pytest tests/ --cov=app --cov-report=xml --cov-report=html --cov-report=term-missing
         
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      if: matrix.python-version == '3.10'
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: true
-        
     - name: Upload coverage artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: matrix.python-version == '3.10'
       with:
         name: coverage-report
@@ -76,6 +72,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest pytest-asyncio httpx
+        
+    - name: Install package in development mode
+      run: |
+        echo "📦 Installing package in development mode..."
+        python -m pip install -e .
         
     - name: Start test server
       run: |

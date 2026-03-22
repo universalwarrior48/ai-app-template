@@ -181,7 +181,6 @@ jspm_packages/
 
 # Docker
 .dockerignore
-Dockerfile*
 docker-compose*.yml
 
 # Application specific
