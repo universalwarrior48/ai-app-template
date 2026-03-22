@@ -1,0 +1,124 @@
+# Pre-commit configuration for AI Application Template
+# This file configures pre-commit hooks for automatic code quality checks
+
+repos:
+  # Black - Code formatting
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+        name: Black
+        description: "Formats Python code to conform to PEP 8"
+        language_version: python3
+        args: ["--line-length=88", "--target-version=py310"]
+        files: \.py$
+
+  # Flake8 - Linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.0
+    hooks:
+      - id: flake8
+        name: Flake8
+        description: "Lint Python code for style and error detection"
+        additional_dependencies:
+          - flake8-bugbear
+          - flake8-comprehensions
+          - flake8-simplify
+        args: ["--config=.flake8"]
+
+  # MyPy - Type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.0
+    hooks:
+      - id: mypy
+        name: MyPy
+        description: "Static type checker for Python"
+        additional_dependencies:
+          - types-requests
+          - types-python-dateutil
+        args: ["--ignore-missing-imports", "--show-error-codes"]
+        files: \.py$
+
+  # isort - Import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort
+        description: "Sorts Python imports"
+        args: ["--profile=black", "--line-length=88"]
+
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # File encoding
+      - id: check-ast
+        name: Check AST
+        description: "Checks Python files for syntax errors"
+      
+      # Check for files that parse as valid Python
+      - id: check-yaml
+        name: Check YAML
+        description: "Validates YAML files"
+      
+      # Check for files that parse as valid JSON
+      - id: check-json
+        name: Check JSON
+        description: "Validates JSON files"
+      
+      # Check for files that parse as valid TOML
+      - id: check-toml
+        name: Check TOML
+        description: "Validates TOML files"
+      
+      # Check for files that parse as valid Markdown
+      - id: check-added-large-files
+        name: Check for added large files
+        description: "Checks for large files that are added"
+        args: ["--maxkb=500"]
+      
+      # Check for files that parse as valid Markdown
+      - id: check-merge-conflict
+        name: Check for merge conflict strings
+        description: "Checks for merge conflict strings"
+      
+      # Check for files that parse as valid Markdown
+      - id: check-shebang-scripts-are-executable
+        name: Check shebang scripts are executable
+        description: "Checks that scripts with shebangs are executable"
+      
+      # Check for files that parse as valid Markdown
+      - id: check-yaml
+        name: Check YAML
+        description: "Validates YAML files"
+      
+      # Check for files that parse as valid Markdown
+      - id: end-of-file-fixer
+        name: Fix end of files
+        description: "Ensures files end with a newline"
+      
+      # Check for files that parse as valid Markdown
+      - id: trailing-whitespace
+        name: Trim Trailing Whitespace
+        description: "Trims trailing whitespace"
+      
+      # Check for files that parse as valid Markdown
+      - id: debug-statements
+        name: Debug Statements
+        description: "Checks for debugger imports and py37+ breakpoint() calls in python source"
+      
+      # Check for files that parse as valid Markdown
+      - id: check-docstring-first
+        name: Check docstring is first
+        description: "Checks that docstring is first in Python files"
+
+  # Security checks
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        name: Bandit
+        description: "Security linter for Python"
+        args: ["-r", "app/", "-ll"]
+        files: \.py$

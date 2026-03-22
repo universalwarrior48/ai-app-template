@@ -372,27 +372,37 @@ mypy app/ --ignore-missing-imports
 
 #### Pre-commit Hook Setup
 
-For automatic formatting before commits, install pre-commit:
+For automatic formatting and quality checks before commits, install pre-commit:
 
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
-Create `.pre-commit-config.yaml`:
-```yaml
-repos:
-  - repo: https://github.com/psf/black
-    rev: 24.4.2
-    hooks:
-      - id: black
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.1.0
-    hooks:
-      - id: flake8
+The template includes a comprehensive `.pre-commit-config.yaml` with:
+- **Black**: Automatic code formatting
+- **Flake8**: Code linting with .flake8 configuration
+- **MyPy**: Static type checking
+- **isort**: Import sorting
+- **Security checks**: Bandit security linting
+- **File validation**: YAML, JSON, TOML validation
+- **General checks**: Trailing whitespace, end-of-file fixes
+
+Run pre-commit manually:
+```bash
+# Run on all files
+pre-commit run --all-files
+
+# Run on specific files
+pre-commit run black --files app/main.py
 ```
 
-Now flake8 will automatically check your code style before each commit!
+Update pre-commit hooks:
+```bash
+pre-commit autoupdate
+```
+
+Now your code will be automatically formatted and checked before each commit!
 
 ### Testing
 
