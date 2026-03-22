@@ -347,12 +347,52 @@ The project includes configuration for:
 - **MyPy**: Type checking
 - **Flake8**: Linting
 
+#### Running Code Quality Checks
+
+Install development dependencies:
+```bash
+pip install -r requirements.txt
+pip install black flake8 mypy
+```
+
 Run formatting and checks:
 ```bash
-black .
-mypy app/
-flake8 app/
+# Check code formatting with Black
+black --check --diff app/ tests/
+
+# Format code with Black
+black app/ tests/
+
+# Run Flake8 linting (uses .flake8 configuration)
+flake8 app/ tests/
+
+# Run MyPy type checking
+mypy app/ --ignore-missing-imports
 ```
+
+#### Pre-commit Hook Setup
+
+For automatic formatting before commits, install pre-commit:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+Create `.pre-commit-config.yaml`:
+```yaml
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.0
+    hooks:
+      - id: flake8
+```
+
+Now flake8 will automatically check your code style before each commit!
 
 ### Testing
 

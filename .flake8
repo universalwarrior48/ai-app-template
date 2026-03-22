@@ -1,15 +1,15 @@
 [flake8]
 # Maximum line length (Black's default)
-max-line-length = 88
+max-line-length = 110
 
 # Ignore specific error codes for Black compatibility
 ignore = 
-    E203,  # whitespace before ':'
-    E266,  # too many leading '#' for block comment
-    E501,  # line too long (82 > 79 characters)
-    E731,  # do not assign a lambda expression, use a def
-    W503,  # line break before binary operator
-    W504,  # line break after binary operator
+    E203,
+    E266,
+    E501,
+    E731,
+    W503,
+    W504,
 
 # Exclude directories
 exclude = 
@@ -26,18 +26,18 @@ exclude =
 
 # Per-file ignores
 per-file-ignores =
-    __init__.py:F401  # Allow unused imports in __init__.py
-    tests/*:S101     # Allow assert statements in tests
+    __init__.py:F401
+    tests/*:S101
 
 # Select specific error codes to check
 select = 
-    B,    # flake8-bugbear
-    C,    # pycodestyle
-    E,    # pycodestyle
-    F,    # pyflakes
-    I,    # isort
-    W,    # pycodestyle
-    YTT,  # flake8-2020
+    B,
+    C,
+    E,
+    F,
+    I,
+    W,
+    YTT,
 
 # Show source code for each error
 show-source = True

@@ -10,11 +10,13 @@ router = APIRouter()
 
 class InputRequest(BaseModel):
     """Input request model."""
+
     text: str
 
 
 class OutputResponse(BaseModel):
     """Output response model."""
+
     result: str
 
 
