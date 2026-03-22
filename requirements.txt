@@ -1,21 +1,21 @@
 # Core API
-fastapi>=0.135.0  # latest: 0.135.1 (March 2026)
-uvicorn[standard]>=0.42.0  # latest: 0.42.0 (March 2026)
+fastapi
+uvicorn[standard]
 
 # UI
-gradio>=6.9.0  # latest: 6.9.0 (March 2026) — jumped from 4.x series
+gradio
 
 # Config
-pydantic>=2.12.0,<3.0  # latest: 2.12.5 (late 2025), still 2.x series
-pydantic-settings>=2.13.0  # latest: 2.13.1 (Feb 2026)
-python-dotenv>=1.2.0  # latest: 1.2.2 (March 2026)
+pydantic
+pydantic-settings
+python-dotenv
 
 # Runtime essentials
-httpx>=0.28.0  # latest: 0.28.1 (Dec 2024 — no newer stable yet in 2026)
-python-multipart  # unpinned (very stable)
+httpx
+python-multipart
 
 # Testing
-pytest>=9.0.0  # latest: 9.0.2 (Dec 2025)
+pytest
 
 # Optional dependencies - uncomment based on your needs:
 
