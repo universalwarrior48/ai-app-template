@@ -1,0 +1,92 @@
+name: Deploy to Hugging Face Spaces
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Skip deployment for template repository - users should fork and configure their own
+    if: >-
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') &&
+      github.repository != 'universalwarrior48/ai-app-template'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install huggingface_hub
+        
+    - name: Validate application structure
+      run: |
+        echo "Validating application structure..."
+        if [ ! -f "app/main.py" ]; then
+          echo "Error: app/main.py not found"
+          exit 1
+        fi
+        if [ ! -f "requirements.txt" ]; then
+          echo "Error: requirements.txt not found"
+          exit 1
+        fi
+        echo "Application structure validated"
+        
+    - name: Deploy to Hugging Face Spaces
+      env:
+        HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+      run: |
+        # Get repository info to determine the space name dynamically
+        REPO_NAME="${GITHUB_REPOSITORY##*/}"
+        USERNAME="${GITHUB_REPOSITORY%%/*}"
+        
+        echo "Repository: $GITHUB_REPOSITORY"
+        echo "Username: $USERNAME"
+        echo "Repo Name: $REPO_NAME"
+        echo "Deploying to Hugging Face Space: $USERNAME/$REPO_NAME"
+        
+        # Create space if it doesn't exist (optional)
+        # hf-cli space create --repo-id "$USERNAME/$REPO_NAME" --space-sdk gradio --token "$HUGGINGFACE_TOKEN" || true
+        
+        # Upload files to the space
+        python -c "
+        import os
+        from huggingface_hub import HfApi
+        
+        api = HfApi()
+        
+        # Get repository info from GitHub environment
+        repo_name = os.environ.get('GITHUB_REPOSITORY', '').split('/')[-1]
+        username = os.environ.get('GITHUB_REPOSITORY', '').split('/')[-2]
+        
+        space_id = f'{username}/{repo_name}'
+        print(f'Deploying to space: {space_id}')
+        
+        try:
+            # Upload the entire repository to the space
+            api.upload_folder(
+                folder_path='.',
+                path_in_repo='.',
+                repo_id=space_id,
+                repo_type='space',
+                token=os.environ['HUGGINGFACE_TOKEN'],
+                commit_message=f'Deploy from GitHub Actions - {os.environ.get(\"GITHUB_SHA\", \"unknown\")[:7]}'
+            )
+            print('✅ Deployment completed successfully!')
+        except Exception as e:
+            print(f'❌ Deployment failed: {e}')
+            raise
+        "
