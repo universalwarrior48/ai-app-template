@@ -7,6 +7,7 @@ import os
 from fastapi import FastAPI
 from app.api.routes import router
 from app.core.config import settings
+from app.utils.port_finder import find_free_port
 
 # Create FastAPI app instance
 app = FastAPI(
@@ -39,11 +40,16 @@ def main():
 
             print(f"🚀 Starting Hugging Face Space: {settings.app_name}")
             print(f"Space ID: {os.environ.get('SPACE_ID', 'Not set')}")
+            print(f"Space Host: {os.environ.get('SPACE_HOST', 'Not set')}")
+            print(f"Space Port: {os.environ.get('SPACE_PORT', 'Not set')}")
 
+            # Find available port for Gradio interface
+            # gradio_port = int(os.environ.get("SPACE_PORT", 7860))
+            
             interface = create_interface()
             interface.launch(
-                server_name=os.environ.get("SPACE_HOST", "0.0.0.0"),
-                server_port=int(os.environ.get("SPACE_PORT", 7860)),
+                server_name="0.0.0.0",
+                server_port=find_free_port(7860, 100),
                 share=False,  # Don't create public share links
                 debug=settings.debug,
             )

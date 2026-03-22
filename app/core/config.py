@@ -4,6 +4,7 @@ Configuration module for the AI application.
 
 from typing import Optional
 from pydantic_settings import BaseSettings
+from app.utils.port_finder import find_free_port
 
 
 class Settings(BaseSettings):
@@ -26,7 +27,7 @@ class Settings(BaseSettings):
     api_port: int = 8000
 
     # UI
-    ui_port: int = 7860
+    ui_port: int = find_free_port(7860)
 
     # Logging
     log_level: str = "INFO"
