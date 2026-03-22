@@ -12,10 +12,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Skip deployment for template repository - users should fork and configure their own
+    # Deploy to template repository for demo purposes
     if: >-
-      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') &&
-      github.repository != 'universalwarrior48/ai-app-template'
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     
     steps:
     - name: Checkout code

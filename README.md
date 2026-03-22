@@ -47,6 +47,16 @@ ai-app-template/
     └── deploy.yml        # Hugging Face Spaces deployment
 ```
 
+## 🌟 Live Demo
+
+**Try the template in action!** Visit our [Hugging Face Space](https://huggingface.co/spaces/ai-app-template-demo) to see the template working before you fork it.
+
+This live demo shows:
+- ✅ FastAPI endpoints working correctly
+- ✅ Gradio interface functionality
+- ✅ Complete CI/CD pipeline validation
+- ✅ Template structure and organization
+
 ## Quick Start
 
 ### 1. Clone and Setup
@@ -75,6 +85,9 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 # Start Gradio UI
 python app/ui/interface.py
+
+# Or start the Hugging Face Space interface
+python app.py
 ```
 
 **Docker:**
