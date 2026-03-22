@@ -3,7 +3,7 @@ Tests for the inference module.
 """
 
 import pytest
-from ..app.core.inference import InferenceEngine
+from app.core.inference import InferenceEngine
 
 
 class TestInferenceEngine:

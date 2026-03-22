@@ -32,6 +32,11 @@ jobs:
         pip install -r requirements.txt
         pip install pytest pytest-cov pytest-asyncio httpx
         
+    - name: Install package in development mode
+      run: |
+        echo "📦 Installing package in development mode..."
+        python -m pip install -e .
+        
     - name: Run tests with pytest
       run: |
         echo "🧪 Running tests with Python ${{ matrix.python-version }}"

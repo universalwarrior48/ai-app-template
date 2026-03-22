@@ -3,9 +3,9 @@ Tests for the processing pipeline.
 """
 
 import pytest
-from ..app.core.pipeline import ProcessingPipeline
-from ..app.services.cache import CacheService
-from ..app.services.vector_db import VectorDBService
+from app.core.pipeline import ProcessingPipeline
+from app.services.cache import CacheService
+from app.services.vector_db import VectorDBService
 
 
 class TestProcessingPipeline:
