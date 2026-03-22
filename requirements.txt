@@ -1,17 +1,20 @@
-# Core dependencies (essential)
+# Core API
 fastapi==0.111.0
 uvicorn[standard]==0.30.1
 
-# UI dependencies (essential)
-gradio==6.9.0
+# UI
+gradio>=4.44.0,<5.0.0
 
-# Configuration and utilities (essential)
-pydantic==2.9.2
+# Config
+pydantic>=2.7,<3.0
 python-dotenv==1.1.1
 
-# Testing (essential)
-pytest==8.3.4
+# Runtime essentials
 httpx==0.27.0
+python-multipart
+
+# Testing
+pytest==8.3.4
 
 # Optional dependencies - uncomment based on your needs:
 
