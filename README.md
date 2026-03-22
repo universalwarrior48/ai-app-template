@@ -1,3 +1,15 @@
+---
+title: "AI Application Template"
+emoji: "🤖"
+colorFrom: "blue"
+colorTo: "purple"
+sdk: "gradio"
+sdk_version: "4.27.0"
+python_version: "3.10"
+app_file: "app/main.py"
+pinned: false
+---
+
 # AI Application Template
 
 [![CI](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml/badge.svg)](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml)
