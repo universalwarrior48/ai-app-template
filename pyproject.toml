@@ -11,15 +11,48 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "gradio",
+    "pydantic",
+    "pydantic-settings",
+    "python-dotenv",
+    "httpx",
+    "python-multipart",
+    "pytest",
+]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.optional-dependencies]
+data-processing = [
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+]
+ml-ai = [
+    "torch>=2.5.0",
+    "transformers>=4.50.0",
+    "sentence-transformers>=3.0.0",
+]
+vector-db = [
+    "pinecone-client>=5.0.0,<6.0",
+    "weaviate-client>=4.10.0",
+    "chromadb>=1.0.0",
+]
+caching = [
+    "redis>=5.2.0",
+    "python-memcached>=1.62",
+]
+dev = [
+    "black>=24.8.0",
+    "flake8>=7.1.0",
+    "mypy>=1.11.0",
 ]
 
 [project.urls]
@@ -31,8 +64,8 @@ Issues = "https://github.com/yourusername/ai-app/issues"
 where = ["."]
 
 [tool.black]
-line-length = 88
-target-version = ['py38', 'py39', 'py310', 'py311']
+line-length = 110
+target-version = ['py310', 'py312']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
@@ -49,7 +82,7 @@ extend-exclude = '''
 '''
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
