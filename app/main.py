@@ -1,7 +1,9 @@
 """
 Main application entry point.
+Supports both FastAPI server and Hugging Face Space deployment.
 """
 
+import os
 from fastapi import FastAPI
 from app.api.routes import router
 from app.core.config import settings
@@ -28,6 +30,33 @@ async def health_check():
 
 def main():
     """Application entry point."""
+    # Check if running as Hugging Face Space
+    if os.environ.get("SPACE_ID") or os.environ.get("SPACE_HOST"):
+        # Launch as Hugging Face Space with Gradio interface
+        try:
+            from app.ui.interface import create_interface
+            print(f"🚀 Starting Hugging Face Space: {settings.app_name}")
+            print(f"Space ID: {os.environ.get('SPACE_ID', 'Not set')}")
+            
+            interface = create_interface()
+            interface.launch(
+                server_name=os.environ.get("SPACE_HOST", "0.0.0.0"),
+                server_port=int(os.environ.get("SPACE_PORT", 7860)),
+                share=False,  # Don't create public share links
+                debug=settings.debug
+            )
+        except ImportError:
+            print("❌ Gradio interface not available, falling back to FastAPI")
+            _start_fastapi_server()
+        except Exception as e:
+            print(f"❌ Error starting Space interface: {e}")
+            _start_fastapi_server()
+    else:
+        # Launch as FastAPI server
+        _start_fastapi_server()
+
+def _start_fastapi_server():
+    """Start the FastAPI server."""
     print(f"AI Application starting...")
     print(f"App Name: {settings.app_name}")
     print(f"Debug Mode: {settings.debug}")
@@ -40,6 +69,15 @@ def main():
     # - Start UI interface
     
     print("AI Application ready!")
+    
+    # Start the server
+    import uvicorn
+    uvicorn.run(
+        "app.main:app",
+        host=settings.api_host,
+        port=settings.api_port,
+        reload=settings.debug
+    )
 
 if __name__ == "__main__":
     main()

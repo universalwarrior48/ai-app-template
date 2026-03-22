@@ -86,8 +86,8 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 # Start Gradio UI
 python app/ui/interface.py
 
-# Or start the Hugging Face Space interface
-python app.py
+# Start Hugging Face Space interface
+python app/main.py
 ```
 
 **Docker:**
