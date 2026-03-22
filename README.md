@@ -1,6 +1,7 @@
 # AI Application Template
 
 [![CI](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml/badge.svg)](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml)
 
 A comprehensive template for building AI applications with FastAPI backend, Gradio UI, and Hugging Face Spaces deployment.
 
