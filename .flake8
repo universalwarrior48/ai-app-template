@@ -1,0 +1,53 @@
+[flake8]
+# Maximum line length (Black's default)
+max-line-length = 110
+
+# Ignore specific error codes for Black compatibility
+ignore = 
+    E203,
+    E266,
+    E501,
+    E731,
+    W503,
+    W504,
+
+# Exclude directories
+exclude = 
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    .pytest_cache,
+    .mypy_cache,
+    build,
+    dist,
+    *.egg-info,
+    ai_app.egg-info
+
+# Per-file ignores
+per-file-ignores =
+    __init__.py:F401
+    tests/*:S101
+
+# Select specific error codes to check
+select = 
+    B,
+    C,
+    E,
+    F,
+    I,
+    W,
+    YTT,
+
+# Show source code for each error
+show-source = True
+
+# Show error code for each error
+show-error-codes = True
+
+# Maximum complexity for functions
+max-complexity = 10
+
+# Import-related settings
+import-order-style = google
+application-import-names = app

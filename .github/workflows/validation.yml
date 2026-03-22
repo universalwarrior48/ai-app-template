@@ -37,8 +37,8 @@ jobs:
         
     - name: Run Flake8 linting
       run: |
-        echo "🔍 Running Flake8 linting..."
-        flake8 app/ tests/ --max-line-length=88 --extend-ignore=E203,W503
+        echo "🔍 Running Flake8 linting with .flake8 configuration..."
+        flake8 app/ tests/
         
     - name: Run MyPy type checking
       run: |
