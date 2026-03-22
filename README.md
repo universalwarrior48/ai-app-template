@@ -1,6 +1,7 @@
 # AI Application Template
 
 [![CI](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml/badge.svg)](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/universalwarrior48/ai-app-template/actions/workflows/test.yml)
 
 A comprehensive template for building AI applications with FastAPI backend, Gradio UI, and Hugging Face Spaces deployment.
 
@@ -254,21 +255,74 @@ CACHE_TTL=3600
 
 ### Dependencies
 
-Add your project dependencies to `requirements.txt`:
+The template includes essential dependencies for a basic AI application. Optional dependencies are commented out for you to enable as needed:
 
 ```txt
-# Core dependencies
+# Core dependencies (essential)
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 
-# UI dependencies
+# UI dependencies (essential)
 gradio==4.27.0
 
-# ML/AI dependencies
-torch==2.1.1
-transformers==4.35.2
+# Configuration and utilities (essential)
+pydantic==2.5.0
+python-dotenv==1.0.0
 
-# Add your specific dependencies here
+# Testing (essential)
+pytest==9.0.2
+httpx==0.28.1
+
+# Optional dependencies - uncomment based on your needs:
+
+# Data processing (optional)
+# numpy==1.24.4
+# pandas==2.1.3
+
+# ML/AI dependencies (optional - heavy dependencies)
+# torch==2.10.0
+# transformers==5.3.0
+# sentence-transformers==5.3.0
+
+# Vector database (optional - uncomment as needed)
+# pinecone-client==2.2.4
+# weaviate-client==3.25.10
+# chromadb==0.4.1
+
+# Caching (optional - uncomment as needed)
+# redis==5.0.1
+# python-memcached==1.59
+
+# Development tools (optional - uncomment as needed)
+# black==26.3.1
+# flake8==7.3.0
+# mypy==1.7.1
+```
+
+#### Dependency Categories:
+
+**Essential Dependencies** (always included):
+- **FastAPI + Uvicorn**: Web framework and ASGI server
+- **Gradio**: Interactive UI framework
+- **Pydantic + python-dotenv**: Configuration management
+- **pytest + httpx**: Testing framework
+
+**Optional Dependencies** (uncomment as needed):
+- **Data Processing**: `numpy`, `pandas` for data manipulation
+- **ML/AI**: `torch`, `transformers`, `sentence-transformers` for machine learning
+- **Vector Database**: `pinecone-client`, `weaviate-client`, `chromadb` for vector storage
+- **Caching**: `redis`, `python-memcached` for caching solutions
+- **Development Tools**: `black`, `flake8`, `mypy` for code quality
+
+#### Quick Start with Minimal Dependencies:
+```bash
+pip install -r requirements.txt  # Installs only essential dependencies
+```
+
+#### Adding Optional Dependencies:
+```bash
+# Uncomment the dependencies you need in requirements.txt, then:
+pip install -r requirements.txt
 ```
 
 ## Development

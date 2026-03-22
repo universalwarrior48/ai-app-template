@@ -4,8 +4,8 @@ Tests for the API endpoints.
 
 import pytest
 from fastapi.testclient import TestClient
-from ..app.api.routes import router
-from ..app.api.routes import InputRequest, OutputResponse
+from app.api.routes import router
+from app.api.routes import InputRequest, OutputResponse
 
 
 class TestAPI:
