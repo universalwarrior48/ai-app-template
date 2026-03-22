@@ -1,0 +1,108 @@
+# Hugging Face Spaces Git configuration
+# Optimize file handling for Space deployment
+
+# Ensure consistent line endings
+* text=auto eol=lf
+
+# Treat binary files correctly
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+
+# Ignore large files that shouldn't be in Spaces
+*.log filter=
+*.tmp filter=
+*.temp filter=
+*.swp filter=
+*.swo filter=
+
+# Ensure Python files are handled correctly
+*.py text eol=lf
+*.pyw text eol=lf
+
+# Ensure configuration files are handled correctly
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+
+# Ensure requirements files are handled correctly
+requirements*.txt text eol=lf
+
+# Ensure Docker files are handled correctly
+Dockerfile text eol=lf
+.dockerignore text eol=lf
+docker-compose*.yml text eol=lf
+
+# Ensure workflow files are handled correctly
+.github/workflows/* text eol=lf
+
+# Ignore build artifacts and cache files
+__pycache__/ export-ignore
+*.pyc export-ignore
+*.pyo export-ignore
+*.pyd export-ignore
+.Python export-ignore
+build/ export-ignore
+develop-eggs/ export-ignore
+dist/ export-ignore
+downloads/ export-ignore
+eggs/ export-ignore
+.eggs/ export-ignore
+lib/ export-ignore
+lib64/ export-ignore
+parts/ export-ignore
+sdist/ export-ignore
+var/ export-ignore
+wheels/ export-ignore
+*.egg-info/ export-ignore
+.installed.cfg export-ignore
+*.egg export-ignore
+MANIFEST export-ignore
+
+# Ignore IDE files
+.vscode/ export-ignore
+.idea/ export-ignore
+*.swp export-ignore
+*.swo export-ignore
+*~
+
+# Ignore OS files
+.DS_Store export-ignore
+Thumbs.db export-ignore
+
+# Ignore Hugging Face cache
+.hf/ export-ignore
+datasets/ export-ignore
+models/ export-ignore
+
+# Ignore logs and runtime data
+logs/ export-ignore
+*.log export-ignore
+pids export-ignore
+*.pid export-ignore
+*.seed export-ignore
+*.pid.lock export-ignore
+
+# Ignore coverage reports
+coverage/ export-ignore
+*.cover export-ignore
+.hypothesis/ export-ignore
+.pytest_cache/ export-ignore
+
+# Ignore environment files
+.env export-ignore
+.venv export-ignore
+env/ export-ignore
+venv/ export-ignore
+ENV/ export-ignore
+env.bak/ export-ignore
+venv.bak/ export-ignore

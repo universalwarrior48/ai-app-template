@@ -47,6 +47,16 @@ ai-app-template/
     └── deploy.yml        # Hugging Face Spaces deployment
 ```
 
+## 🌟 Live Demo
+
+**Try the template in action!** Visit our [Hugging Face Space](https://huggingface.co/spaces/ai-app-template-demo) to see the template working before you fork it.
+
+This live demo shows:
+- ✅ FastAPI endpoints working correctly
+- ✅ Gradio interface functionality
+- ✅ Complete CI/CD pipeline validation
+- ✅ Template structure and organization
+
 ## Quick Start
 
 ### 1. Clone and Setup
@@ -75,6 +85,9 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 # Start Gradio UI
 python app/ui/interface.py
+
+# Start Hugging Face Space interface
+python app/main.py
 ```
 
 **Docker:**
@@ -334,12 +347,62 @@ The project includes configuration for:
 - **MyPy**: Type checking
 - **Flake8**: Linting
 
+#### Running Code Quality Checks
+
+Install development dependencies:
+```bash
+pip install -r requirements.txt
+pip install black flake8 mypy
+```
+
 Run formatting and checks:
 ```bash
-black .
-mypy app/
-flake8 app/
+# Check code formatting with Black
+black --check --diff app/ tests/
+
+# Format code with Black
+black app/ tests/
+
+# Run Flake8 linting (uses .flake8 configuration)
+flake8 app/ tests/
+
+# Run MyPy type checking
+mypy app/ --ignore-missing-imports
 ```
+
+#### Pre-commit Hook Setup
+
+For automatic formatting and quality checks before commits, install pre-commit:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+The template includes a comprehensive `.pre-commit-config.yaml` with:
+- **Black**: Automatic code formatting
+- **Flake8**: Code linting with .flake8 configuration
+- **MyPy**: Static type checking
+- **isort**: Import sorting
+- **Security checks**: Bandit security linting
+- **File validation**: YAML, JSON, TOML validation
+- **General checks**: Trailing whitespace, end-of-file fixes
+
+Run pre-commit manually:
+```bash
+# Run on all files
+pre-commit run --all-files
+
+# Run on specific files
+pre-commit run black --files app/main.py
+```
+
+Update pre-commit hooks:
+```bash
+pre-commit autoupdate
+```
+
+Now your code will be automatically formatted and checked before each commit!
 
 ### Testing
 
